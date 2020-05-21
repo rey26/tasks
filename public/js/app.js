@@ -23,15 +23,37 @@ $(document).ready(function(){
 
 function submitForm(event){
   event.preventDefault();
+
   //get value
   let value = $('#form').val();
+
   // validate value
   if(value.length < 1)
     value = "New Task";
-  // send value
-  
+
+  // create data to send
+  const data = {
+    "description": value
+  }
+
   // retrieve new value as response 
-  // add new element to DOM 
+  $.ajax("./api/task", {
+    type: "POST",
+    data,
+    success: function(task){
+      // add new element to DOM 
+      $('#tasksRoot').append(`<li class="list-group-item">${task.data.description}</li>`);
+    },
+    failure: function(data){
+      console.log("All tasks error: " + data);
+    }
+
+  });
+  
+  // hide input field and show new button
+  $('#formRoot').html('');
+  $('#newForm').show();
+
 }
 
 function showNewForm(event){
@@ -47,13 +69,14 @@ function showNewForm(event){
 }
 
 function showTasks(tasks){
-  let tasksElement = '<ul class="list-group">';
+  let html = '';
   tasks.forEach(task => {
-    tasksElement += `<li class="list-group-item">${task.description}</li>`;
+    html += `<li class="list-group-item">${task.description}</li>`;
   });
-  tasksElement += '</ul>';
-  $('#tasksRoot').html(tasksElement);
+  $('#tasksRoot').append(html);
 }
+
+
 
 function getAllTasks(){
   $.get({
