@@ -29,7 +29,7 @@ function submitForm(event){
   if(value.length < 1)
     value = "New Task";
   // send value
-
+  
   // retrieve new value as response 
   // add new element to DOM 
 }

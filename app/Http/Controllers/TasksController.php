@@ -16,5 +16,14 @@ class TasksController extends Controller
         return Response::json(Task::all());
     }
 
+    public function storeTask(Request $request){
+        $task = new Task;
+        $task->description = $request->description;
+        if($task->save()){
+            return Response::json(array('data' => $task), 200);
+        }
+        return "Insert error!";
+    }
+
 
 }
