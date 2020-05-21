@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Response;
+use App\Task;
 
 class TasksController extends Controller
 {
@@ -11,7 +13,7 @@ class TasksController extends Controller
     }
 
     public function showTasks(){
-        return Task::all();
+        return Response::json(Task::all());
     }
 
 
