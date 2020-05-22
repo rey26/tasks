@@ -12,8 +12,13 @@ class TasksController extends Controller
         return view('index');
     }
 
-    public function show(){
-        return Response::json(Task::all());
+    public function getAll($order = null){
+        if($order){
+            $response = Response::json(Task::orderBy('created_at', 'desc')->get());
+        } else {
+            $response = Response::json(Task::all());
+        }
+        return $response;
     }
 
     public function create(Request $request){
