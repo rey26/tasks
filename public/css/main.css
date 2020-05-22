@@ -1,3 +1,6 @@
+body{
+    background-color: green;
+}
 .form{
     display: flex;
 }
@@ -14,8 +17,14 @@ li.list-group-item:hover{
     cursor: pointer;
 }
 
+#done li.list-group-item:first-child{
+    background-color: green;
+    border: none;
+    color: white;
+}
 #done li.list-group-item:not(:first-child){
     text-decoration: line-through;
+    color: gray;
 }
 
 .hidden{
@@ -51,6 +60,15 @@ li.list-group-item:hover{
 header{
     position: relative;
     font-size: 2em;
+    color: white;
+}
+
+header #more{
+    color: black;
+}
+
+header #more>a{
+    color: white;
 }
 
 footer{
@@ -74,8 +92,8 @@ footer .button{
 
 #newForm {
     border-radius: 30px;
-    background-color: green;
-    color: white;
+    background-color: white;
+    color: green;
     padding: 5px 5px 0px 5px;
 }
 
@@ -88,9 +106,6 @@ footer .button{
 #formRoot{
     margin-bottom: 5px;
 }
-
-
-
 
 
 .icon:hover{

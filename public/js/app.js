@@ -80,7 +80,9 @@ function showNewForm(event){
 }
 
 function renderTask(task){
-  return `<li class="list-group-item" data-id="${task.task_id}">${task.description}</li>`
+  if(task.is_done == 1)
+    return `<li class="list-group-item" data-id="${task.task_id}"><span class="material-icons">check_circle</span><span>${task.description}</span></li>`;
+  return `<li class="list-group-item" data-id="${task.task_id}"><span class="material-icons">check_circle_outline</span><span>${task.description}</span></li>`;
 }
 
 function showTasks(tasks){
