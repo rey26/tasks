@@ -14,7 +14,7 @@ $(document).ready(function(){
 
   // mark task as done
   $(document).on("click", "#notDone > li", function(){
-    $(this).hide();
+    $(this).remove();
     markAsDone($(this).data("id"));
   });
 

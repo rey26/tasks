@@ -15,7 +15,13 @@
     <body>
         <div class="container">
             <header>Tasks
-                <a href="#" class="btn btn-primary">more</a>
+                <div id="more">
+                    <a href="#" class="btn btn-primary">more</a>
+                    <div id="changeOrder" class="hidden">
+                        Sposob zoradenia
+                    </div>
+                </div>
+
             </header>
             <ul class="list-group" id="notDone"></ul>
 

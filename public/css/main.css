@@ -12,3 +12,27 @@ li.list-group-item:hover{
 #done li.list-group-item:not(:first-child){
     text-decoration: line-through;
 }
+
+.hidden{
+    display: none
+}
+
+#more{
+    display: inline;
+}
+
+    #more:hover #changeOrder{
+    display: block;
+}
+
+#changeOrder{
+    position: absolute;
+    z-index: 999;
+    border: 1px solid;
+    background: white;
+    padding: 5px;
+}
+
+    #changeOrder:hover{
+        cursor: pointer;
+    }
