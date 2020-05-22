@@ -12,15 +12,24 @@ class TasksController extends Controller
         return view('index');
     }
 
-    public function showTasks(){
+    public function show(){
         return Response::json(Task::all());
     }
 
-    public function createTask(Request $request){
+    public function create(Request $request){
         $task = new Task;
         $task->description = $request->description;
         if($task->save()){
-            return Response::json(array('data' => $task), 200);
+            return Response::json($task, 200);
+        }
+        return "Create error!";
+    }
+
+    public function setAsDone($id){
+        $task = Task::find($id);
+        $task->is_done = 1;
+        if($task->save()){
+            return Response::json($task, 200);
         }
         return "Create error!";
     }

@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/all-tasks', 'TasksController@showTasks');
+Route::get('/all-tasks', 'TasksController@show');
+Route::get('/set-as-done/{id}', 'TasksController@setAsDone');
 
-Route::post('/task', 'TasksController@createTask');
+Route::post('/task', 'TasksController@create');

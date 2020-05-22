@@ -17,7 +17,9 @@
             <header>Tasks
                 <a href="#" class="btn btn-primary">more</a>
             </header>
-            <ul class="list-group" id="tasksRoot"></ul>
+            <ul class="list-group" id="notDone"></ul>
+
+            <ul class="list-group" id="done"></ul>
             <footer>
                 <div id="formRoot"></div>
                 <a id="newForm" href="#" class="btn btn-success">New</a>

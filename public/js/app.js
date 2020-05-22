@@ -13,6 +13,10 @@ $(document).ready(function(){
   });
 
   // mark task as done
+  $(document).on("click", "#notDone > li", function(){
+    $(this).hide();
+    markAsDone($(this).data("id"));
+  });
 
   // reorder tasks
 
@@ -42,7 +46,7 @@ function submitForm(event){
     data,
     success: function(task){
       // add new element to DOM 
-      $('#tasksRoot').append(`<li class="list-group-item">${task.data.description}</li>`);
+      $('#notDone').append(renderTask(task));
     },
     failure: function(data){
       console.log("All tasks error: " + data);
@@ -68,15 +72,17 @@ function showNewForm(event){
   $('#formRoot').append(form);
 }
 
+function renderTask(task){
+  return `<li class="list-group-item" data-id="${task.task_id}">${task.description}</li>`
+}
+
 function showTasks(tasks){
   let html = '';
   tasks.forEach(task => {
-    html += `<li class="list-group-item">${task.description}</li>`;
+    html += renderTask(task);
   });
-  $('#tasksRoot').append(html);
+  $('#notDone').append(html);
 }
-
-
 
 function getAllTasks(){
   $.get({
@@ -90,6 +96,20 @@ function getAllTasks(){
   });
 }
 
+function markAsDone(taskId){
+  $.get({
+    url: `/api/set-as-done/${taskId}`,
+    success: function(result){
+      // check if ul has children, if not add header
+      if($('ul#done li').length == 0)
+        $('#done').append('<li class="list-group-item header">Hotove ulohy</li>');
+      $('#done').append(renderTask(result));
+    },
+    failure: function(data){
+        console.log("All tasks error: " + data);
+    }
+  });
+}
 
 
 
