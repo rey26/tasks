@@ -77,7 +77,7 @@ footer{
     bottom:0;
     transform: translate(-50%, -50%);
     left: 50%;
-    bottom: -19px;
+    bottom: -22px;
 }
 
 footer .button{
@@ -100,9 +100,14 @@ footer .button{
 
 
 #submitForm{
-    bottom: 0px;
+    bottom: -5px;
     right: 35px;
 }
+
+#submitForm:hover{
+    cursor: pointer;
+}
+
 #formRoot{
     margin-bottom: 5px;
 }
