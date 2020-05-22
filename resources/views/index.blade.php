@@ -17,7 +17,7 @@
             <header>Tasks
                 <div id="more">
                     <a href="#" class="btn btn-primary">more</a>
-                    <div id="changeOrder" class="hidden">
+                    <div id="changeOrder" class="hidden" data-order="1">
                         Sposob zoradenia
                     </div>
                 </div>

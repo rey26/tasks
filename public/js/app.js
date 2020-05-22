@@ -13,15 +13,22 @@ $(document).ready(function(){
   });
 
   // mark task as done
-  $(document).on("click", "#notDone > li", function(){
+  $(document).on('click', '#notDone > li', function(){
     $(this).remove();
     markAsDone($(this).data("id"));
   });
 
   // reorder tasks
-
-  // store tasks in localstorage?
-
+  $(document).on('click', '#changeOrder', function(){
+    let order = $(this).attr("data-order");
+    if(order == 1){
+      $(this).attr("data-order", "0");
+      getAllTasks(1);
+    } else {
+      $(this).attr("data-order", "1");
+      getAllTasks();
+    }
+  });
 
 });
 
@@ -78,6 +85,8 @@ function renderTask(task){
 
 function showTasks(tasks){
   let html = '';
+  $('#notDone').empty();
+  $('#done').empty();
   tasks.forEach(task => {
     if(task.is_done){
       addDoneTask(task);
@@ -89,9 +98,9 @@ function showTasks(tasks){
   $('#notDone').append(html);
 }
 
-function getAllTasks(){
+function getAllTasks(order = 0){
   $.get({
-      url: "/api/all-tasks",
+      url: `/api/all-tasks/${order}`,
       success: function(result){
         showTasks(result);
       },
