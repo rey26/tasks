@@ -2,7 +2,12 @@
     display: flex;
 }
     .form > input {
+        border: none;
         width: 80%;
+    }
+    input:focus{
+        outline: none;
+        box-shadow: none!important;
     }
 
 li.list-group-item:hover{
@@ -19,11 +24,14 @@ li.list-group-item:hover{
 
 #more{
     display: inline;
+    position: absolute;
+    right: 0px;
 }
 
     #more:hover #changeOrder{
     display: block;
-}
+    position: absolute;
+    }
 
 #changeOrder{
     position: absolute;
@@ -31,8 +39,60 @@ li.list-group-item:hover{
     border: 1px solid;
     background: white;
     padding: 5px;
+    right: 0;
+    font-size: 16px;
+    width: 250px;
+    
 }
-
     #changeOrder:hover{
         cursor: pointer;
     }
+
+header{
+    position: relative;
+    font-size: 2em;
+}
+
+footer{
+    position: fixed;
+    background-color: white;
+    bottom:0;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    bottom: -19px;
+}
+
+footer .button{
+    position: absolute;
+    bottom: 25px;
+    right: 10px;
+}
+
+    footer .button span{
+        font-size: 40px;
+    }
+
+#newForm {
+    border-radius: 30px;
+    background-color: green;
+    color: white;
+    padding: 5px 5px 0px 5px;
+}
+
+
+
+#submitForm{
+    bottom: 0px;
+    right: 35px;
+}
+#formRoot{
+    margin-bottom: 5px;
+}
+
+
+
+
+
+.icon:hover{
+    text-decoration: none;
+}

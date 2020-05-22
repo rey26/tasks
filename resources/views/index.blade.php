@@ -7,7 +7,7 @@
         <title>Tasks</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
         <link href="./css/main.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -16,9 +16,10 @@
         <div class="container">
             <header>Tasks
                 <div id="more">
-                    <a href="#" class="btn btn-primary">more</a>
+                    <a href="#" class="icon"><span class="material-icons">more_vert</span></a>
                     <div id="changeOrder" class="hidden" data-order="1">
-                        Sposob zoradenia
+                    <span class="material-icons">format_line_spacing</span>
+                    Sposob zoradenia
                     </div>
                 </div>
 
@@ -26,11 +27,12 @@
             <ul class="list-group" id="notDone"></ul>
 
             <ul class="list-group" id="done"></ul>
-            <footer>
-                <div id="formRoot"></div>
-                <a id="newForm" href="#" class="btn btn-success">New</a>
-            </footer>
+
         </div>
+        <footer class="container">
+                <div id="formRoot"></div>
+                <a id="newForm" href="#" class="button"><span class="material-icons">add</span></a>
+            </footer>
         <script src="./js/app.js"></script>
     </body>
 </html>

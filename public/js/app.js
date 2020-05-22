@@ -74,7 +74,7 @@ function showNewForm(event){
   // create form 
   let form = `<div class="form">
                 <input id="form" type="text" class="form-control" placeholder="Pridat ulohu" required/>
-                <a id="submitForm" class="btn btn-success">Add</a>
+                <a id="submitForm" class="button"><span class="material-icons">cloud_upload</span></a>
               </div>`;
   $('#formRoot').append(form);
 }
