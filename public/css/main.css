@@ -4,3 +4,11 @@
     .form > input {
         width: 80%;
     }
+
+li.list-group-item:hover{
+    cursor: pointer;
+}
+
+#done li.list-group-item:not(:first-child){
+    text-decoration: line-through;
+}

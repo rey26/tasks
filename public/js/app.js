@@ -79,7 +79,12 @@ function renderTask(task){
 function showTasks(tasks){
   let html = '';
   tasks.forEach(task => {
-    html += renderTask(task);
+    if(task.is_done){
+      addDoneTask(task);
+    }
+    else {
+      html += renderTask(task);
+    }
   });
   $('#notDone').append(html);
 }
@@ -101,14 +106,19 @@ function markAsDone(taskId){
     url: `/api/set-as-done/${taskId}`,
     success: function(result){
       // check if ul has children, if not add header
-      if($('ul#done li').length == 0)
-        $('#done').append('<li class="list-group-item header">Hotove ulohy</li>');
-      $('#done').append(renderTask(result));
+      addDoneTask(result);
     },
     failure: function(data){
         console.log("All tasks error: " + data);
     }
   });
+}
+
+function addDoneTask(task){
+  if($('ul#done li').length == 0)
+    $('#done').append('<li class="list-group-item header">Hotove ulohy</li>');
+  
+  $('#done').append(renderTask(task));
 }
 
 
