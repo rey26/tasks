@@ -1,4 +1,5 @@
 ## How to use
+0, composer install
 1, cp .env.example env.
 2, create database in MySQL (MariaDB)
 3, php artisan key:generate
