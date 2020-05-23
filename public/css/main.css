@@ -4,7 +4,15 @@ body{
 .form{
     display: flex;
 }
+
+    .form > span{
+        position: absolute;
+        bottom: 10px;
+        color: gray;
+    }
+
     .form > input {
+        margin-left: 20px;
         border: none;
         width: 80%;
     }
@@ -29,10 +37,11 @@ li.list-group-item:hover{
 
 li.list-group-item span:first-child{
     position: absolute;
+    left: 10px;
 }
 
 li.list-group-item span:not(:first-child){
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 .hidden{

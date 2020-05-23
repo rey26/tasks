@@ -73,6 +73,7 @@ function showNewForm(event){
   $('#newForm').hide();
   // create form 
   let form = `<div class="form">
+                <span class="material-icons">check_circle_outline</span>
                 <input id="form" type="text" class="form-control" placeholder="Pridat ulohu" required/>
                 <a id="submitForm" class="button"><span class="material-icons">cloud_upload</span></a>
               </div>`;
