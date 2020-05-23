@@ -18,8 +18,8 @@
                 <div id="more">
                     <a href="#" class="icon"><span class="material-icons">more_vert</span></a>
                     <div id="changeOrder" class="hidden" data-order="1">
-                    <span class="material-icons">format_line_spacing</span>
-                    Sposob zoradenia
+                        <span class="material-icons">format_line_spacing</span>
+                        <span>Spôsob zoradenia</span>
                     </div>
                 </div>
 

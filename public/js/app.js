@@ -74,7 +74,7 @@ function showNewForm(event){
   // create form 
   let form = `<div class="form">
                 <span class="material-icons">check_circle_outline</span>
-                <input id="form" type="text" class="form-control" placeholder="Pridat ulohu" required/>
+                <input id="form" type="text" class="form-control" placeholder="Pridať úlohu" required/>
                 <a id="submitForm" class="button"><span class="material-icons">cloud_upload</span></a>
               </div>`;
   $('#formRoot').append(form);
@@ -128,7 +128,7 @@ function markAsDone(taskId){
 
 function addDoneTask(task){
   if($('ul#done li').length == 0)
-    $('#done').append('<li class="list-group-item header">Hotove ulohy</li>');
+    $('#done').append('<li class="list-group-item header">Dokončené</li>');
   
   $('#done').append(renderTask(task));
 }
