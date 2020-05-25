@@ -16,9 +16,10 @@ body{
         border: none;
         width: 80%;
     }
+    /* delete unwanted borders on input */
     input:focus{
         outline: none;
-        box-shadow: none!important;
+        box-shadow: none!important; 
     }
 
 li.list-group-item:hover{

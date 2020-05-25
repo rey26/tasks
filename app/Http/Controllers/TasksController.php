@@ -13,6 +13,7 @@ class TasksController extends Controller
     }
 
     public function getAll($order = null){
+        // order tasks from latest by default but when $order is set to 1, the task will be ordered the first created
         if($order){
             $response = Response::json(Task::orderBy('created_at', 'desc')->get());
         } else {
@@ -23,7 +24,12 @@ class TasksController extends Controller
 
     public function create(Request $request){
         $task = new Task;
-        $task->description = $request->description;
+        // set task description to default value
+        if($request->description == null)
+            $task->description = "New Task";
+        else
+            $task->description = $request->description;
+        // return recently created task
         if($task->save()){
             return Response::json($task, 200);
         }
@@ -33,10 +39,11 @@ class TasksController extends Controller
     public function setAsDone($id){
         $task = Task::find($id);
         $task->is_done = 1;
+        // return task set as done 
         if($task->save()){
             return Response::json($task, 200);
         }
-        return "Create error!";
+        return "SetAsDone error!";
     }
 
 
