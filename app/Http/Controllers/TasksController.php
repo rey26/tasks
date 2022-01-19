@@ -30,7 +30,7 @@ class TasksController extends Controller
             } else {
                 $message = 'An error ocurred!';
             }
-            $response = Response::json(['error' => $message], 500);
+            $response = Response::json(['error' => $message]);
         }
 
         return $response;
@@ -49,7 +49,7 @@ class TasksController extends Controller
         if ($task->save()) {
             $response = Response::json($task, 200);
         } else {
-            $response = Response::json(['error' => 'An error ocurred while saving task'], 500);
+            $response = Response::json(['error' => 'An error ocurred while saving task']);
         }
 
         return $response;
@@ -63,7 +63,7 @@ class TasksController extends Controller
         if ($task->save()) {
             $response = Response::json($task, 200);
         } else {
-            $response = Response::json(['error' => 'An error ocurred while marking as done'], 500);
+            $response = Response::json(['error' => 'An error ocurred while marking as done']);
         }
 
         return $response;

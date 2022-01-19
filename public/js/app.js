@@ -61,6 +61,11 @@ function submitForm(event){
     type: "POST",
     data,
     success: function(task){
+      if (task.error) {
+        $('div#errors').append('<div class="alert alert-warning">' + task.error + '</div>');
+        return;
+      }
+      $('div#errors').html('');
       // add new element to DOM 
       $('#notDone').append(renderTask(task));
     },
@@ -98,6 +103,11 @@ function renderTask(task){
 }
 
 function showTasks(tasks){
+  if (tasks.error) {
+    $('div#errors').append('<div class="alert alert-warning">' + tasks.error + '</div>');
+    return;
+  }
+  $('div#errors').html('');
   let html = '';
   // remove child nodes from #done and #notDone lists
   $('#notDone').empty();
@@ -144,6 +154,11 @@ function markAsDone(taskId){
 }
 
 function addDoneTask(task){
+  if (task.error) {
+    $('div#errors').append('<div class="alert alert-warning">' + task.error + '</div>');
+    return;
+  }
+  $('div#errors').html('');
   // check if ul has children, if not add header
   if($('ul#done li').length == 0) {
     $('#done').append('<li class="list-group-item header">Done</li>');

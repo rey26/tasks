@@ -23,6 +23,7 @@
                     </div>
                 </div>
             </header>
+            <div id="errors"></div>
             <ul class="list-group" id="notDone"></ul>
             <ul class="list-group" id="done"></ul>
         </div>
