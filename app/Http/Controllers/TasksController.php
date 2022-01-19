@@ -2,49 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Response;
 use App\Task;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Response;
+use Throwable;
 
 class TasksController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('index');
     }
 
-    public function getAll($order = null){
-        // order tasks from latest by default but when $order is set to 1, the task will be ordered the first created
-        if($order){
-            $response = Response::json(Task::orderBy('created_at', 'desc')->get());
-        } else {
-            $response = Response::json(Task::all());
+    public function getAll(?int $order = null): JsonResponse
+    {
+        try {
+            if ($order) {
+                $response = Response::json(Task::orderBy('created_at', 'desc')->get());
+            } else {
+                $response = Response::json(Task::all());
+            }
+        } catch (Throwable $t) {
+            if (App::environment('local')) {
+                $message = $t->getMessage();
+            } else {
+                $message = 'An error ocurred!';
+            }
+            $response = Response::json(['error' => $message], 500);
         }
+
         return $response;
     }
 
-    public function create(Request $request){
-        $task = new Task;
-        // set task description to default value
-        if($request->description == null)
+    public function create(Request $request): JsonResponse
+    {
+        $task = new Task();
+
+        if ($request->description === null) {
             $task->description = "New Task";
-        else
+        } else {
             $task->description = $request->description;
-        // return recently created task
-        if($task->save()){
-            return Response::json($task, 200);
         }
-        return "Create error!";
+
+        if ($task->save()) {
+            $response = Response::json($task, 200);
+        } else {
+            $response = Response::json(['error' => 'An error ocurred while saving task'], 500);
+        }
+
+        return $response;
     }
 
-    public function setAsDone($id){
+    public function markAsDone(int $id): JsonResponse
+    {
         $task = Task::find($id);
         $task->is_done = 1;
-        // return task set as done 
-        if($task->save()){
-            return Response::json($task, 200);
+        // return task set as done
+        if ($task->save()) {
+            $response = Response::json($task, 200);
+        } else {
+            $response = Response::json(['error' => 'An error ocurred while marking as done'], 500);
         }
-        return "SetAsDone error!";
+
+        return $response;
     }
-
-
 }

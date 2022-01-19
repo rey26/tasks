@@ -1,11 +1,11 @@
 
 
 $(document).ready(function(){
-  
+
   getAllTasks();
-  
+
   // show new form for task when big plus button is clicked
-  $('#newForm').click(function(){
+  $('#newForm').click(function(event){
     showNewForm(event);
   });
 
@@ -25,15 +25,15 @@ $(document).ready(function(){
   // reorder tasks
   $(document).on('click', '#changeOrder', function(){
     // get order value from element
-    let order = $(this).attr("data-order");
+    let order = $(this).data("order");
     // check BE docs for meaning of ordering -> 1 for oldest first and 0 for latest first
     if(order == 1){
       // toggle value of element
-      $(this).attr("data-order", "0");
+      $(this).data("order", "0");
       getAllTasks(1);
     } else {
       // toggle value of element
-      $(this).attr("data-order", "1");
+      $(this).data("order", "1");
       getAllTasks();
     }
   });
@@ -47,8 +47,9 @@ function submitForm(event){
   let value = $('#form').val();
 
   // validate value and set default value
-  if(value.length < 1)
+  if (value.length < 1) {
     value = "New Task";
+  }
 
   // create data to send
   const data = {
@@ -56,7 +57,7 @@ function submitForm(event){
   }
 
   // retrieve new value as response 
-  $.ajax("./api/task", {
+  $.ajax("/api/task", {
     type: "POST",
     data,
     success: function(task){
@@ -82,7 +83,7 @@ function showNewForm(event){
   // create form 
   let form = `<div class="form">
                 <span class="material-icons">check_circle_outline</span>
-                <input id="form" type="text" class="form-control" placeholder="Pridať úlohu" required/>
+                <input id="form" type="text" class="form-control" placeholder="Add new task" required/>
                 <a id="submitForm" class="button"><span class="material-icons">cloud_upload</span></a>
               </div>`;
   $('#formRoot').append(form);
@@ -119,7 +120,7 @@ function showTasks(tasks){
 function getAllTasks(order = 0){
   // order is optional, set to 0 by default
   $.get({
-      url: `/api/all-tasks/${order}`,
+      url: `/api/task/${order}`,
       success: function(result){
         showTasks(result);
       },
@@ -131,8 +132,8 @@ function getAllTasks(order = 0){
 
 function markAsDone(taskId){
   // id of task to be set as done
-  $.get({
-    url: `/api/set-as-done/${taskId}`,
+  $.post({
+    url: `/api/task/${taskId}/done`,
     success: function(result){
       addDoneTask(result);
     },
@@ -143,10 +144,10 @@ function markAsDone(taskId){
 }
 
 function addDoneTask(task){
-  
   // check if ul has children, if not add header
-  if($('ul#done li').length == 0)
-    $('#done').append('<li class="list-group-item header">Dokončené</li>');
+  if($('ul#done li').length == 0) {
+    $('#done').append('<li class="list-group-item header">Done</li>');
+  }
   
   $('#done').append(renderTask(task));
 }

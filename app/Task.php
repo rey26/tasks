@@ -13,7 +13,7 @@ class Task extends Model
         'description',
         'is_done'
     ];
-    
+
     // set task not to be done by default
     protected $attributes = [
         'is_done' => false
